@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
+import { useLocation } from 'react-router-dom';
+
 
 const Info = styled.div`
   opacity: 0;
@@ -62,6 +65,21 @@ const Icon = styled.div`
 `;
 
 const Product = (items) => {
+
+  const location = useLocation();
+  const id = location.pathname.split("/")[2]
+
+  const [product, setProduct] = useState({})
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+
+      } catch (err) {
+
+      }
+    }
+  }, [id])
   return (
     <Container>
       <Circle />
@@ -71,7 +89,9 @@ const Product = (items) => {
           <i class="fa-solid fa-cart-shopping"></i>
         </Icon>
         <Icon>
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <Link to={`/product/${items._id}`}>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </Link>
         </Icon>
         <Icon>
           <i class="fa-solid fa-heart"></i>
