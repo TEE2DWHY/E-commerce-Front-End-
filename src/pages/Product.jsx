@@ -3,6 +3,10 @@ import Navbar from "../components/Navbar"
 import Announcement from "../components/Announcement"
 import NewsLetter from "../components/NewsLetter"
 import Footer from "../components/Footer"
+import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { useState } from "react";
+import { publicRequest } from "../requestMethod";
 
 const Container = styled.div`
 
@@ -100,13 +104,27 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+    const location = useLocation();
+    const id = location.pathname.split("/")[2]
+
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicRequest.get("/products/find/" + id);
+                setProduct(res.data)
+            } catch { }
+        };
+        getProduct()
+    }, [id])
     return (
         <Container>
             <Navbar />
             <Announcement />
             <Item>
                 <ImageContainer>
-                    <Image src="https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png" />
+                    <Image src={product.img} />
                 </ImageContainer>
                 <Info>
                     <Title>Face Cap (Gucci)</Title>

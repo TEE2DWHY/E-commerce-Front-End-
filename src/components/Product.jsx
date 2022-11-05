@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
-import { useLocation } from 'react-router-dom';
+
 
 
 const Info = styled.div`
@@ -65,21 +65,6 @@ const Icon = styled.div`
 `;
 
 const Product = (items) => {
-
-  const location = useLocation();
-  const id = location.pathname.split("/")[2]
-
-  const [product, setProduct] = useState({})
-
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-
-      } catch (err) {
-
-      }
-    }
-  }, [id])
   return (
     <Container>
       <Circle />
